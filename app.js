@@ -26,9 +26,11 @@ app.get('/', (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-app.listen(Port, () => console.log(`Server Started at PORT:${Port}`));
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    console.log("MongoDB Connected");
+    app.listen(Port, () => console.log(`Server Started at PORT:${Port}`));
+  })
+  .catch(err => {
+    console.error("MongoDB connection error:", err);
+  });
