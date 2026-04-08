@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require("path");
 const Port = process.env.PORT || 8000;
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -27,11 +28,10 @@ app.get('/', (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-    console.log("MongoDB Connected");
-    app.listen(Port, () => console.log(`Server Started at PORT:${Port}`));
-  })
-  .catch(err => {
-    console.error("MongoDB connection error:", err);
-  });
+mongoose.connect(process.env.MONGO_URI, {
+  family: 4, // FORCE IPv4 (fixes Render + DNS issues)
+})
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log("DB Error", err));
+
+app.listen(Port, () => console.log(`Server Started at PORT:${Port}`));
