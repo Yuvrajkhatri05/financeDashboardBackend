@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Finance Dashboard API</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #38bdf8;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .api {
+      background: #1e293b;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+    }
+    .method {
+      font-weight: bold;
+      color: #22c55e;
+    }
+    button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>💰 Finance Dashboard API</h1>
+<p>📄 For Full Documentation visit <b>/api-docs</b></p>
+
+<!-- AUTH APIs -->
+<div class="section">
+  <h2>🔐 Auth APIs</h2>
+
+  <div class="api">
+    <span class="method">POST</span>
+    /auth
+    <button onclick="copy('/auth')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">POST</span>
+    /auth/login
+    <button onclick="copy('/auth/login')">Copy</button>
+  </div>
+</div>
+
+<!-- USER MANAGEMENT -->
+<div class="section">
+  <h2>👤 User Management</h2>
+
+  <div class="api">
+    <span class="method">GET</span>
+    /auth/users
+    <button onclick="copy('/auth/users')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">PATCH</span>
+    /auth/users/:id/role
+    <button onclick="copy('/auth/users/:id/role')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">PATCH</span>
+    /auth/users/:id/status
+    <button onclick="copy('/auth/users/:id/status')">Copy</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="section">
+  <h2>📊 Dashboard</h2>
+
+  <div class="api">
+    <span class="method">GET</span>
+    /dashboard/summary
+    <button onclick="copy('/dashboard/summary')">Copy</button>
+  </div>
+</div>
+
+<!-- RECORDS -->
+<div class="section">
+  <h2>📁 Records APIs</h2>
+
+  <div class="api">
+    <span class="method">POST</span>
+    /records/create
+    <button onclick="copy('/records/create')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">GET</span>
+    /records/all-records
+    <button onclick="copy('/records/all-records')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">PATCH</span>
+    /records/update/:id
+    <button onclick="copy('/records/update/:id')">Copy</button>
+  </div>
+
+  <div class="api">
+    <span class="method">DELETE</span>
+    /records/delete/:id
+    <button onclick="copy('/records/delete/:id')">Copy</button>
+  </div>
+</div>
+
+<script>
+  const baseURL = "https://financedashboardbackend.onrender.com";
+
+  function copy(path) {
+    const fullUrl = baseURL + path;
+    navigator.clipboard.writeText(fullUrl);
+    alert("Copied: " + fullUrl);
+  }
+</script>
+
+</body>
+</html>
