@@ -15,13 +15,14 @@ const swaggerSpec = require("./config/swagger");
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve("./Public")));
 
 app.use("/auth", authRoutes);
 app.use("/", recordRoutes);
 app.use("/", dashboardRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Finance Dashboard Backend is running');
+  res.sendFile(path.join(__dirname, "Public", "index.html"));
 });
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
